@@ -34,7 +34,7 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 # DEBUG = os.getenv("DEBUG", "False") == "True"
 DEBUG = True
 DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", "goparty.co.in", "goparty-mz7kc.ondigitalocean.app"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "goparty.co.in", "goparty-mz7kc.ondigitalocean.app", "www.goparty.co.in"]
 
 
 # Application definition
@@ -131,6 +131,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+# Media 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
