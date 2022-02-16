@@ -1,0 +1,23 @@
+{% extends 'home/layout.html' %}
+
+{% block title %}
+GoParty | Home
+{% endblock %}
+
+{% block body %}
+
+<h1>Google Map Here</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            Database Locations
+            <ul>
+                {% for location in location_list %}
+                <li>{{ location.name }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
