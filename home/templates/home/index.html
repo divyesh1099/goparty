@@ -10,10 +10,13 @@ GoParty | Home
 <div class="container">
     <div class="row">
         <div class="col-12">
-            Database Locations
+            Database Restaurants
             <ul>
-                {% for location in location_list %}
-                <li>{{ location.name }}</li>
+                {% for restaurant in restaurant_list %}
+                <li>{{ restaurant.name }}</li>
+                    {% for restaurant in restaurant.images.all %}
+                    <img src="{{ restaurant.image.url }}" alt="restaurantImage" height="200" width="200">
+                    {% endfor %}
                 {% endfor %}
             </ul>
         </div>
