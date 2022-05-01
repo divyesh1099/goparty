@@ -6,21 +6,5 @@ GoParty | Home
 
 {% block body %}
 
-<h1>Google Map Here</h1>
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            Database Restaurants
-            <ul>
-                {% for restaurant in restaurant_list %}
-                <li>{{ restaurant.name }}</li>
-                    {% for restaurant in restaurant.images.all %}
-                    <img src="{{ restaurant.image.url }}" alt="restaurantImage" height="200" width="200">
-                    {% endfor %}
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
-</div>
 
 {% endblock %}
