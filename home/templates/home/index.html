@@ -1,10 +1,50 @@
 {% extends 'home/layout.html' %}
+{% load static %}
 
 {% block title %}
 GoParty | Home
 {% endblock %}
 
+{% block navbar %}
+<!-- Navbar 2 Starts -->
+<nav class="navbar navbar-expand-lg navbar-light"  style="background-color: #e3f2fd;">
+    <button class="navbar-toggler toggler-example" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
+    aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"><span class="dark-blue-text"><i
+        class="fas fa-bars fa-1x"></i></span></button>
+    <div class="container-fluid d-flex">
+      <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent1">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#">City 1</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">City 2</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Navbar 2 Ends -->
+
+  <!-- Navbar 3 Starts -->
+  <nav class="navbar navbar-expand-lg navbar-light col-12" style="background: url({% static 'searchbarbanner.png' %});">
+    <div class="col-12">
+      <div class="row-12">
+        <h1 class="font-weight-bold d-flex justify-content-center m-1 p-1 text-white">Over 11 Restaurants in More than 1 City</h1>
+      </div>
+      <div class="row-12">
+        <div class="input-group input-group-lg p-3 row-lg-12">
+          <input type="text" aria-label="Search" placeholder="Search by city, state or neignbourhood" class="form-control col-lg-8" required />
+          <button type="button" class="form-control btn btn-secondary col-lg-1"><i class="fa fa-location-arrow" aria-hidden="true"></i> Near Me</button>
+          <input type="text" class="col-lg-2" placeholder="Start Date and Time" onfocus="(this.type='datetime-local')" onblur="if(this.value==''){this.type='text'}" required>
+          <button type="submit" class="form-control btn btn-primary col-lg-2">Submit</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- Navbar 3 Ends -->
+{% endblock %}
+
 {% block body %}
-
-
+<h1>Home Page</h1>
 {% endblock %}
