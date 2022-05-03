@@ -16,3 +16,4 @@ class RestaurantAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Restaurant, RestaurantAdmin)
+admin.site.register(Profile)

@@ -20,3 +20,10 @@ class Restaurant(models.Model):
 class RestaurantImage(models.Model):
     image = models.ImageField(upload_to = 'restaurant_images/')
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name="images")
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    image = models.ImageField(default = 'user/profile/default_user.jpg', upload_to = 'user/profile/%Y/%m/%d/')
+    
+    def __str__(self):
+        return self.user.username

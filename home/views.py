@@ -30,6 +30,7 @@ def my_login(request):
     else:
         return render(request, "home/login.html")
 
+@login_required
 def my_logout(request):
     logout(request)
     return redirect("/")
@@ -63,13 +64,51 @@ def my_signup(request):
         return redirect("/")
     else:
         return render(request, "home/signup.html")
-
+@login_required
 def view_profile(request):
+    try:
+        profile = Profile.objects.get_or_create(user = request.user)[0]
+    except Exception as e:
+        print("Following error occured :", e)
     return render(request, 'home/view_profile.html')
 
+@login_required
 def edit_profile(request):
-    return render(request, 'home/edit_profile.html')
+    user = request.user
+    if request.method == "POST":
+        try:
+            profile = Profile.objects.get_or_create(user = request.user)[0]
+        except Exception as e:
+            print("Following error occured :", e)
+        if request.FILES:
+            image = request.FILES["image"]
+            profile.image = image
+            profile.save()
+        if request.POST["username"]:
+            username = request.POST["username"]
+            user.username = username
+            user.save()
+        if request.POST["email"]:
+            email = request.POST["email"]
+            user.email = email
+            user.save()
+        return render(request, 'home/view_profile.html')
+        
+    else:
+        profile = Profile.objects.get_or_create(user = request.user)[0]
+        context = {
+            "profile":profile
+        }
+        return render(request, 'home/edit_profile.html', context)
 
+
+@login_required
 def delete_profile(request):
-    # return render(request, 'home/delete_profile.html')
-    pass
+    try:
+        user = User.objects.get(username = request.user.username)
+        user.delete()
+    except Exception as e:
+        print("User delete error is ", e)
+        logout(request)
+        return render(request, 'home/login.html')
+    return redirect("/")

@@ -47,6 +47,16 @@
           <ul class="navbar-nav mr-auto">
             {% if request.user.is_authenticated %}
             <li class="nav-item d-flex justify-content-center">
+              <a class="nav-link d-flex" href="{% url 'home:view_profile' %}">
+                {% if user.profile.image.url %}
+                <img src="{{ user.profile.image.url }}" width="30" height="30" class="rounded-circle">
+                {% else %}
+                <span class="material-icons">person</span>
+                {% endif %}
+                <span class="justify-content-center">&nbsp;{{ user.username }}</span>
+              </a>
+            </li>
+            <li class="nav-item d-flex justify-content-center">
               <a class="nav-link d-flex" href="{% url 'home:logout' %}">
                 <span class="material-icons">logout</span>
                 <span class="justify-content-center">Logout</span>
