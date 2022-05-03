@@ -6,6 +6,52 @@ GoParty | Sign Up
 {% endblock %}
 
 {% block body %}
-<h1>Sign Up</h1>
+<link rel="stylesheet" href="{% static 'home.css' %}">
+{% if success %}
+<div class="container">
+    <div class="alert alert-success" role="alert">{{ success }}</div>
+</div>
+{% endif %}
+{% if error %}
+<div class="container">
+    <div class="alert alert-danger" role="alert">{{ error }}</div>
+</div>
+{% endif %}
+{% if message %}
+<div class="container">
+    <div class="alert alert-primary" role="alert">{{ message }}</div>
+</div>
+{% endif %}
+    <div class="wrapper">
+        <div class="logo">
+            <img src="{% static 'logo.png' %}" alt="">
+        </div>
+        <div class="text-center mt-4 name">
+            Sign Up to GoParty
+        </div>
+        <form class="p-3 mt-3" method="post" action="{% url 'home:signup' %}">
+            {% csrf_token %}
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-user"></span>
+                <input type="text" name="username" id="username" placeholder="Username">
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-envelope"></span>
+                <input type="email" name="email" id="email" placeholder="Email Id">
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-key"></span>
+                <input type="password" name="password" id="pwd" placeholder="New Password">
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-key"></span>
+                <input type="password" name="password2" id="pwd2" placeholder="Confirm Password">
+            </div>
+            <button class="btn mt-3 btn-success" type="submit">Sign Up</button>
+        </form>
+        <div class="text-center fs-6">
+            <a href="{% url 'home:login' %}">Already Have an Account?</a> instead <a href="{% url 'home:login' %}">Login</a>
+        </div>
+    </div>
 
 {% endblock %}

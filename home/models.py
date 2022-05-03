@@ -1,6 +1,8 @@
 from pyexpat import model
 from django.db import models
 from django_google_maps import fields
+from django.contrib.auth.models import User
+
 # Create your models here.
 
 class Restaurant(models.Model):

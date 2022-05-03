@@ -6,6 +6,43 @@ GoParty | Login
 {% endblock %}
 
 {% block body %}
-<h1>Login</h1>
-
+<link rel="stylesheet" href="{% static 'home.css' %}">
+{% if success %}
+<div class="container">
+    <div class="alert alert-success" role="alert">{{ success }}</div>
+</div>
+{% endif %}
+{% if error %}
+<div class="container">
+    <div class="alert alert-danger" role="alert">{{ error }}</div>
+</div>
+{% endif %}
+{% if message %}
+<div class="container">
+    <div class="alert alert-primary" role="alert">{{ message }}</div>
+</div>
+{% endif %}
+    <div class="wrapper">
+        <div class="logo">
+            <img src="{% static 'logo.png' %}" alt="">
+        </div>
+        <div class="text-center mt-4 name">
+            Login to GoParty
+        </div>
+        <form class="p-3 mt-3" action="{% url 'home:login' %}" method="post">
+            {% csrf_token %}
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-user"></span>
+                <input type="text" name="username" id="username" placeholder="Username">
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-key"></span>
+                <input type="password" name="password" id="pwd" placeholder="Password">
+            </div>
+            <button type="submit" class="btn mt-3">Login</button>
+        </form>
+        <div class="text-center fs-6">
+            <a href="{% url 'home:signup' %}">New User?</a> instead <a href="{% url 'home:signup' %}">Sign up</a>
+        </div>
+    </div>
 {% endblock %}
