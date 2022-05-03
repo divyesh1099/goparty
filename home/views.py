@@ -8,7 +8,11 @@ from django.contrib.auth.decorators import login_required
 
 def index(request):
     restaurant_list = Restaurant.objects.all()
-    context = {'restaurant_list':restaurant_list}
+    featured_list = Featured.objects.all()
+    context = {
+        'restaurants':restaurant_list, 
+        'featureds': featured_list,
+        }
     return render(request, 'home/index.html', context)
 
 def my_login(request):

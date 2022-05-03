@@ -6,14 +6,19 @@ from .models import *
 class RestaurantImageInline(admin.StackedInline):
     model = RestaurantImage
 
+class RestaurantFeatureInline(admin.StackedInline):
+    model = RestaurantFeature
+
 class RestaurantAdmin(admin.ModelAdmin):
     formfield_overrides = {
         fields.AddressField:{'widget':widgets.GoogleMapsAddressWidget},
     }
     inlines = [
         RestaurantImageInline,
+        RestaurantFeatureInline,
     ]
 
 
 admin.site.register(Restaurant, RestaurantAdmin)
 admin.site.register(Profile)
+admin.site.register(Featured)
