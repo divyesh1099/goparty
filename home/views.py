@@ -39,6 +39,13 @@ def my_logout(request):
     logout(request)
     return redirect("/")
 
+def restaurant(request, name):
+    restaurant = Restaurant.objects.get(name = name)
+    context = {
+        'restaurant': restaurant,
+        }
+    return render(request, 'home/restaurant.html', context)
+
 def my_signup(request):
 
     if request.method == "POST":

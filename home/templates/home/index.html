@@ -47,24 +47,47 @@ GoParty | Home
 
 {% block body %}
 <link rel="stylesheet" href="{% static 'home.css' %}">
-<div class="card bg-success m-1">
-  <div class="card-header">    
-    <h1 class="m-1 font-weight-bold text-center">Featured Restaurants</h1>
-  </div>
-  <div class="card-body d-flex flex-column flex-lg-row justify-content-around">
-    {% for restaurant in featureds %}
-      <div class="card p-0 m-1">
-        {% with restaurant.restaurant.images.all|first as image %}
-        <img class="card-img-top img-thumbnail" src="{{ image.image.url }}" alt="Card image cap">
-        {% endwith %}
-        
-        <div class="card-body">
-          <h5 class="card-title font-weight-bold">{{ restaurant.restaurant.name }}</h5>
-          <p class="card-text">{{ restaurant.restaurant.address }}</p>
-          <p class="card-text"><small class="text-muted">Last Updated {{ restaurant.restaurant.edited }}</small></p>
+<h1 class="font-weight-bold text-center">Featured Restaurants</h1>
+  <div class="row ml-1" style="overflow-x: auto; flex-wrap: nowrap;">
+      {% for restaurant in featureds %}
+        <div class="card col-lg-3 col-md-4 col-sm-6 mx-1 p-0">
+          {% with restaurant.restaurant.images.all|first as image %}
+          <img class="card-img-top img-thumbnail" src="{{ image.image.url }}" alt="Card image cap" style="height: 19rem;">
+          {% endwith %}
+          
+          <div class="card-body">
+            <a href="{% url 'home:restaurant' restaurant.restaurant.name %}" class="card-title font-weight-bold">{{ restaurant.restaurant.name }}</a>
+            <h5 class="font-weight-bold">₹{{ restaurant.restaurant.price }}</h5>
+            <!-- <p class="card-text">{{ restaurant.restaurant.address }}</p> -->
+            <!-- <p class="card-text font-weight-bold">Features: </p>
+            <ul>
+              {% if restaurant.restaurant.features.great_food %}
+              <li class="card-text">Great Food</li>
+              {% endif %}
+              {% if restaurant.restaurant.features.satisfactory_staff %}
+              <li class="card-text">Statisfactory Staff</li>
+              {% endif %}
+              {% if restaurant.restaurant.features.great_ambience %}
+              <li class="card-text">Great Ambience</li>
+              {% endif %}
+              {% if restaurant.restaurant.features.good_service %}
+              <li class="card-text">Good Service</li>
+              {% endif %}
+              {% if restaurant.restaurant.features.reasonable_cost %}
+              <li class="card-text">Reasonable Cost</li>
+              {% endif %}
+              {% if restaurant.restaurant.features.hygiene_and_cleanliness %}
+              <li class="card-text">Hygiene And Cleanliness</li>
+              {% endif %}
+            </ul> -->
+          </div>
+          <!-- <div class="card-footer">
+            <p class="card-text"><small class="text-muted">Last Updated {{ restaurant.restaurant.edited }}</small></p>
+          </div> -->
         </div>
-      </div>
-    {% endfor %}
+      {% endfor %}
   </div>
-</div>
+
+<h1 class="font-weight-bold text-center">Restaurants</h1>
+
 {% endblock %}
