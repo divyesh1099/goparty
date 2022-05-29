@@ -16,6 +16,14 @@ def index(request):
         }
     return render(request, 'home/index.html', context)
 
+def bycity(request, city):
+    restaurants = Restaurant.objects.filter(city = city)
+    context = {
+        "restaurants": restaurants,
+        "city": city,
+    }
+    return render(request, 'home/bycity.html', context)
+
 def my_login(request):
     if request.method == "POST":
 
@@ -127,12 +135,3 @@ def delete_profile(request):
         logout(request)
         return render(request, 'home/login.html')
     return redirect("/")
-
-
-def bycity(request, city):
-    restaurants = Restaurant.objects.filter(city = city)
-    context = {
-        "restaurants": restaurants,
-        "city": city,
-    }
-    return render(request, 'home/bycity.html', context)

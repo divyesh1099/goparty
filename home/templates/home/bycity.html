@@ -46,13 +46,13 @@ GoParty | City
     </div> -->
 <div class="card-deck m-1">
 {% for restaurant in restaurants %}
-    <div class="card bg-info">
+    <div class="card bg-primary">
     {% with restaurant.images.all|first as image %}                    
-        <img class="card-img-top" src="{{ image.image.url }}" alt="Card image cap" style="max-height: 25rem;">
+        <img class="card-img-top img-thumbnail" src="{{ image.image.url }}" alt="Card image cap" style="max-height: 25rem;">
     {% endwith %}
     <a href="{% url 'home:restaurant' restaurant.name %}">
         <div class="card-body">
-        <h5 class="card-title"><a href="{% url 'home:restaurant' restaurant.name %}">{{ restaurant }}</a></h5>
+        <h5 class="card-title font-weight-bold"><a class="text-dark" href="{% url 'home:restaurant' restaurant.name %}">{{ restaurant }}</a></h5>
         </div>
     </a>
     </div>                

@@ -121,46 +121,27 @@
         <!--Grid column-->
   
         <!--Grid column-->
+        {% for city in cities %}
         <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase"><a class="nav-link text-white" href="{% url 'home:bycity' city %}">{{ city }}</a></h5>
+  
+          <!-- <ul class="list-unstyled mb-0">
+            <li>
+              <a href="#!" class="text-white">Restaurant 1</a>
+            </li>
+            <li>
+              <a href="#!" class="text-white">Restaurant 2</a>
+            </li>
+            <li>
+              <a href="#!" class="text-white">Restaurant 3</a>
+            </li>
+            <li>
+              <a href="#!" class="text-white">Restaurant 4</a>
+            </li>
+          </ul> -->
           
-          <h5 class="text-uppercase">City 1</h5>
-  
-          <ul class="list-unstyled mb-0">
-            <li>
-              <a href="#!" class="text-white">Restaurant 1</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Restaurant 2</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Restaurant 3</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Restaurant 4</a>
-            </li>
-          </ul>
         </div>
-        <!--Grid column-->
-  
-        <!--Grid column-->
-        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-          <h5 class="text-uppercase mb-0">City 2</h5>
-  
-          <ul class="list-unstyled">
-            <li>
-              <a href="#!" class="text-white">Restaurant 1</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Restaurant 2</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Restaurant 3</a>
-            </li>
-            <li>
-              <a href="#!" class="text-white">Restaurant 4</a>
-            </li>
-          </ul>
-        </div>
+        {% endfor %}
         <!--Grid column-->
       </div>
       <!--Grid row-->

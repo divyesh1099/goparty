@@ -112,7 +112,7 @@ GoParty | Home
     {% with restaurant.images.all|first as image %}
     <img src="{{ image.image.url }}" alt="Louvre" style="height: 20rem; width: 100%;"/>
     {% endwith %}
-    <a href="{% url 'home:restaurant' restaurant.name %}">
+    <a class="text-white" href="{% url 'home:restaurant' restaurant.name %}">
       <div class="mask text-center font-weight-bold" style="background-color: rgba(251, 251, 251, 0.2)"><h1>{{ restaurant.name }}</h1></div>
     </a>
   </div>
