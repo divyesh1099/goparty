@@ -14,12 +14,14 @@ GoParty | Home
     <div class="container-fluid d-flex">
       <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent1">
         <ul class="navbar-nav">
+          {% for city in cities %}
           <li class="nav-item">
-            <a class="nav-link" href="#">City 1</a>
+            <a class="nav-link" href="{% url 'home:bycity' city %}">{{ city }}</a>
           </li>
-          <li class="nav-item">
+          {% endfor %}
+          <!-- <li class="nav-item">
             <a class="nav-link" href="#">City 2</a>
-          </li>
+          </li> -->
         </ul>
       </div>
     </div>
@@ -89,5 +91,32 @@ GoParty | Home
   </div>
 
 <h1 class="font-weight-bold text-center">Restaurants</h1>
+<!-- <div class="row ml-1" style="display: flex; overflow: auto; flex-wrap: nowrap;">
+  {% for restaurant in restaurants %}
+    <div class="card col-lg-3 col-md-4 col-sm-12 bg-dark text-white mr-1 mb-1 p-0">
+      {% with restaurant.images.all|first as image %}
+      <img class="card-img" src="{{ image.image.url }}" alt="Card image" style="height:17rem;">
+      {% endwith %}
+        <div class="card-img-overlay">
+          <h5 class="card-title">
+            <a href="{% url 'home:restaurant' restaurant.name %}" class="card-title font-weight-bold">{{ restaurant.name }}</a>
+          </h5>
+          <p class="card-text">₹{{ restaurant.price }}</p>
+        </div>
+    </div>
+  {% endfor %}
+</div> -->
+<div class="row ml-1 mb-1" style="overflow-x: auto; flex-wrap: nowrap;">
+  {% for restaurant in restaurants|slice:"0:6" %}
+  <div class="bg-image hover-overlay ripple shadow-1-strong rounded col-lg-3 col-md-4 col-sm-12" data-mdb-ripple-color="light">
+    {% with restaurant.images.all|first as image %}
+    <img src="{{ image.image.url }}" alt="Louvre" style="height: 20rem; width: 100%;"/>
+    {% endwith %}
+    <a href="{% url 'home:restaurant' restaurant.name %}">
+      <div class="mask text-center font-weight-bold" style="background-color: rgba(251, 251, 251, 0.2)"><h1>{{ restaurant.name }}</h1></div>
+    </a>
+  </div>
+  {% endfor %}
+</div>
 
 {% endblock %}

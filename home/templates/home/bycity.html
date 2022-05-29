@@ -1,0 +1,63 @@
+{% extends 'home/layout.html' %}
+{% load static %}
+
+{% block title %}
+GoParty | City
+{% endblock %}
+
+{% block navbar %}
+<!-- Navbar 2 Starts -->
+<nav class="navbar navbar-expand-lg navbar-light"  style="background-color: #e3f2fd;">
+    <button class="navbar-toggler toggler-example" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
+    aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"><span class="dark-blue-text"><i
+        class="fas fa-bars fa-1x"></i></span></button>
+    <div class="container-fluid d-flex">
+      <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent1">
+        <ul class="navbar-nav">
+          {% for city in cities %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'home:bycity' city %}">{{ city }}</a>
+          </li>
+          {% endfor %}
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="#">City 2</a>
+          </li> -->
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Navbar 2 Ends -->
+  {% endblock %}
+
+{% block body %}
+<div class="card bg-dark text-white" style="min-height: 40rem;">
+    <div class="d-flex justify-content-center">
+        <div class="card-header">
+            <h1>{{ city }}</h1>
+        </div>
+    </div>
+    <!-- <div class="container d-flex justify-content-center">
+        <ul>
+            {% for restaurant in restaurants %}
+
+            <li><h3><a href="{% url 'home:restaurant' restaurant.name %}">{{ restaurant }}</a></h3></li>
+            {% endfor %}           
+        </ul>
+    </div> -->
+<div class="card-deck m-1">
+{% for restaurant in restaurants %}
+    <div class="card bg-info">
+    {% with restaurant.images.all|first as image %}                    
+        <img class="card-img-top" src="{{ image.image.url }}" alt="Card image cap" style="max-height: 25rem;">
+    {% endwith %}
+    <a href="{% url 'home:restaurant' restaurant.name %}">
+        <div class="card-body">
+        <h5 class="card-title"><a href="{% url 'home:restaurant' restaurant.name %}">{{ restaurant }}</a></h5>
+        </div>
+    </a>
+    </div>                
+{% endfor %}
+</div>
+</div>
+
+{% endblock %}

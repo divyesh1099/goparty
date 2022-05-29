@@ -2,6 +2,9 @@
 <!doctype html>
 <html lang="en">
   <head>
+
+    <link rel="stylesheet" href="{% static 'css/my.css' %}">
+    <script src="{% static 'js/my.js' %}"></script>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -36,12 +39,18 @@
 
     <!-- Nabvar 1 Starts -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex">
-      <div class="mr-auto d-flex">
+      <div class="d-flex mr-auto">
         <a class="navbar-brand font-weight-bold" href="{% url 'home:index' %}"><img src="{% static 'logo.png' %}" alt="" width="30" height="24" class="d-inline-block align-text-top"> GoParty</a>
-        <button class="navbar-toggler toggler-example" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="dark-blue-text"><i
-            class="fas fa-bars fa-1x"></i></span></button>
-        </div>
+        <!-- {% block navbarsearchtab %}
+        <h1 class="d-flex mr-3">Hi</h1>
+        {% endblock %} -->
+        <button class="navbar-toggler toggler-example" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="dark-blue-text">
+            <i class="fas fa-bars fa-1x"></i>
+          </span>
+        </button>
+            
+      </div>
       <div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
@@ -113,6 +122,7 @@
   
         <!--Grid column-->
         <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          
           <h5 class="text-uppercase">City 1</h5>
   
           <ul class="list-unstyled mb-0">

@@ -1,3 +1,4 @@
+from logging import exception
 from django.shortcuts import render, redirect
 from .models import *
 from django.contrib.auth import login, authenticate, logout
@@ -75,6 +76,8 @@ def my_signup(request):
         return redirect("/")
     else:
         return render(request, "home/signup.html")
+
+
 @login_required
 def view_profile(request):
     try:
@@ -82,6 +85,7 @@ def view_profile(request):
     except Exception as e:
         print("Following error occured :", e)
     return render(request, 'home/view_profile.html')
+
 
 @login_required
 def edit_profile(request):
@@ -123,3 +127,12 @@ def delete_profile(request):
         logout(request)
         return render(request, 'home/login.html')
     return redirect("/")
+
+
+def bycity(request, city):
+    restaurants = Restaurant.objects.filter(city = city)
+    context = {
+        "restaurants": restaurants,
+        "city": city,
+    }
+    return render(request, 'home/bycity.html', context)
