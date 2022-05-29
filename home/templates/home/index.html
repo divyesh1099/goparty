@@ -35,12 +35,19 @@ GoParty | Home
         <h1 class="font-weight-bold d-flex justify-content-center m-1 p-1 text-white">Over 11 Restaurants in More than 1 City</h1>
       </div>
       <div class="row-12">
-        <div class="input-group input-group-lg p-3 row-lg-12">
-          <input type="text" aria-label="Search" placeholder="Search by city, state or neignbourhood" class="form-control col-lg-8" required />
-          <button type="button" class="form-control btn btn-secondary col-lg-1"><i class="fa fa-location-arrow" aria-hidden="true"></i> Near Me</button>
-          <input type="text" class="col-lg-2" placeholder="Start Date and Time" onfocus="(this.type='datetime-local')" onblur="if(this.value==''){this.type='text'}" required>
-          <button type="submit" class="form-control btn btn-primary col-lg-2">Submit</button>
-        </div>
+        <form method="post">
+          <div class="input-group input-group-lg p-3 row-lg-12">
+            {% csrf_token %}
+            <input type="text" name="input" aria-label="Search" placeholder="Search by city, state or neighbourhood" class="form-control col-lg-8" required />
+            <!-- <input type="text" name="datetime" class="col-lg-2" placeholder="Start Date and Time" onfocus="(this.type='datetime-local')" onblur="if(this.value==''){this.type='text'}" required> -->
+            {% if request.user.is_authenticated %}
+            <button type="submit" class="form-control btn btn-primary col-lg-2">Search</button>
+            {% else %}
+            <a class="form-control btn btn-primary col-lg-2" href="{% url 'home:login' %}">Search</a>
+            {% endif %}
+            
+          </div>
+        </form>
       </div>
     </div>
   </nav>

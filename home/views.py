@@ -1,13 +1,30 @@
-from logging import exception
+from unicodedata import name
 from django.shortcuts import render, redirect
 from .models import *
 from django.contrib.auth import login, authenticate, logout
 from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
-
+from django.db.models import Q
 # Create your views here.
 
+def get_search_results(input):
+    restaurants = Restaurant.objects.filter(Q(name = input) | Q(city = input) | Q(district = input) | Q(address__contains = input) | Q(state = input))
+    return restaurants
+
 def index(request):
+    if request.method == "POST":
+        # try:
+            input = request.POST["input"]
+            # Try to search by name, state, City
+            restaurants = get_search_results(input)
+            print(restaurants)
+            context = {
+                "restaurants": set(restaurants),
+            }
+            return render(request, 'home/searchresults.html', context)
+        # except:
+            # print("No Restaurant found")
+
     restaurant_list = Restaurant.objects.all()
     featured_list = Featured.objects.all()
     context = {
@@ -49,11 +66,14 @@ def my_logout(request):
     return redirect("/")
 
 def restaurant(request, name):
-    restaurant = Restaurant.objects.get(name = name)
-    context = {
-        'restaurant': restaurant,
+    try:
+        restaurant = Restaurant.objects.get(name = name)
+        context = {
+            'restaurant': restaurant,
         }
-    return render(request, 'home/restaurant.html', context)
+        return render(request, 'home/restaurant.html', context)
+    except:
+        return render(request, 'home/404.html')
 
 def my_signup(request):
 
